@@ -1,0 +1,76 @@
+<Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Libs\LibStub\LibStub.lua" />
+
+    <!-- TEMPLATES -->
+
+
+    <Font name="MyFont" inherits="SystemFont_Med1" virtual="true">
+        <FontHeight>
+        <AbsValue val="12"/>
+        </FontHeight>
+   </Font>
+
+	<Frame name="FriendsItemTemplate" virtual="true" mixin="FriendStatusMixin">
+	<Size x="30" y="30"/>
+	<Layers>
+		<Layer>
+		<Texture parentKey="ItemAvatar" atlas="CircleMask">
+			<Size x="30" y="30"/>
+		</Texture>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnEnter>
+			self:ShowOnlineTooltip()
+		</OnEnter>
+		<OnLeave>
+			self:HideOnlineTooltip()
+		</OnLeave>
+	</Scripts>
+	</Frame>
+	<Frame name="StripLine" virtual="true">
+		<Layers>
+			<Layer>
+				<Texture atlas="_AnimaChannel-Channel-Line-horizontal">
+				<Size x="1110" y="10"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+
+
+	<Frame name="ContextItemTemplate" virtual="true">
+		<Size x="20" y="20"/>
+		<Layers>
+			<Layer>
+				<FontString parentKey='Text' text="PLACE" inherits="GameFontNormalLarge"/>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="HeaderItemTemplate" virtual="true">
+		<Size x="200" y="20"/>
+		<Layers>
+			<Layer>
+				<FontString parentKey='Text' text="PLACE" inherits="MyFont"/>
+				<Texture atlas="minimal-scrollbar-arrow-bottom-over"><Size x="10" y="10"/><Anchors><Anchor point="LEFT" relativeKey="$parent.Text" relativePoint="RIGHT" x="5"/></Anchors></Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+		<Frame name="NavItemTemplate" virtual="true">
+		<Size x="20" y="20"/>
+		<Layers>
+			<Layer>
+				<FontString parentKey='Text' text="PLACE" inherits="MyFont"/>
+			</Layer>
+		</Layers>
+	</Frame> 
+	<!-- Лол, потом удалю с заменой дубликата -->
+	<Frame name="BreadcrumbsItemTemplate" virtual="true">
+		<Size x="20" y="20"/>
+		<Layers>
+			<Layer>
+				<FontString parentKey='Text' text="PLACE" inherits="MyFont"/>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

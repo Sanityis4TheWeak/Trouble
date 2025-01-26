@@ -1,0 +1,383 @@
+<Ui xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Libs\LibStub\LibStub.lua" />
+	<Include file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml" />
+	<Include file="Libs\AceAddon-3.0\AceAddon-3.0.xml" />
+	<Include file="Libs\AceConsole-3.0\AceConsole-3.0.xml" />
+	<Include file="Libs\AceEvent-3.0\AceEvent-3.0.xml" />
+	<Include file="Templates.xml"/>
+	<!-- TEMPLATES -->
+  
+	 <!-- MAINFRAME  -->
+	<Frame name="MainFrame" inherits="BackdropTemplate" parent="UIParent" hidden="true">
+		<Size x="1140" y="850"/>
+		<Anchors>
+		<Anchor point="CENTER" relativePoint="CENTER"/>
+		</Anchors>
+		 <KeyValues><KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" keyType="string" type="global" /></KeyValues>
+
+		<!-- <Layers>
+			<Layer level="BORDER">
+				<Texture parentKey="Border" atlas="AdventureMap_TopBorder">
+				<Size x="1140" y="850"/>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				</Texture>
+			</Layer>
+		</Layers> -->
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Background" atlas="auctionhouse-background-index">
+				<Size x="1140" y="850"/>
+				<Anchors>
+					<Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+				</Anchors>
+				</Texture>
+			</Layer>
+			
+		</Layers>
+
+		<Frames>
+		<Button name="CloseButton" >
+			<Size x="30" y="30"/>
+			<Anchors>
+				<Anchor point="TOPRIGHT"/>
+			</Anchors>
+			<Layers>
+				<Layer level="">
+					<Texture atlas="128-RedButton-Exit"></Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnClick>
+					MainFrame:Hide()
+				</OnClick>
+			</Scripts>
+		</Button>
+
+		<Frame parentKey="Header">
+			<Size x="1120" y="60"/>
+			<Anchors>
+				<Anchor point="TOP" relativePoint="TOP"/>
+			</Anchors>
+			 <Layers>
+				<Layer level="BACKGROUND">
+					<Texture parentKey="Background" atlas="auctionhouse-ui-inputfield-middle">
+					</Texture>
+				</Layer> 
+			 </Layers> 
+			<Frames>
+				<Frame parentKey="FAQ" inherits="NavItemTemplate">
+				<Anchors><Anchor point="LEFT" x="20" /></Anchors>
+				</Frame>
+
+				<Frame parentKey="MAIN" inherits="HeaderItemTemplate">
+				<Anchors><Anchor point="LEFT" relativeKey="$parent.FAQ" relativePoint="RIGHT" x="30"/></Anchors>
+				</Frame>
+
+				<Frame parentKey="Community" inherits="HeaderItemTemplate">
+				<Anchors><Anchor point="LEFT" relativeKey="$parent.MAIN" relativePoint="RIGHT" x="30" y="0"/></Anchors>
+				</Frame>
+
+				<Frame parentKey="SBIR" inherits="HeaderItemTemplate">
+				<Anchors><Anchor point="LEFT" relativeKey="$parent.Community" relativePoint="RIGHT" x="30" y="0"/></Anchors>
+				</Frame>
+
+				<Frame parentKey="Guidelines" inherits="HeaderItemTemplate">
+				<Anchors><Anchor point="LEFT" relativeKey="$parent.SBIR" relativePoint="RIGHT" x="30" y="0"/></Anchors>
+				</Frame>
+
+
+
+			</Frames>
+		</Frame>
+
+		<Frame parentKey="Breadcrumbs"> 
+			<Size x="1120" y="40"/> 
+			<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.Header" relativePoint="BOTTOMLEFT"/></Anchors> 
+			<Frames>
+				<Frame parentKey="HomeIcon">
+				<Size x="20" y="20"/>
+				<Anchors><Anchor point="LEFT" relativePoint="LEFT" x="20" /></Anchors>
+				<Layers>
+					<Layer>
+						<Texture atlas="Gamepad_Rev_Home_64"> </Texture> 
+					</Layer>
+				</Layers>
+				</Frame>
+				<Frame parentKey="BreadcrumbForumThread" inherits="BreadcrumbsItemTemplate">
+				<Anchors><Anchor point="LEFT" relativeKey="$parent.HomeIcon" relativePoint="RIGHT" x="20"/></Anchors>
+				</Frame>
+
+				<Frame parentKey="BreadcrumbsForumThreadName" inherits="BreadcrumbsItemTemplate">
+				<Anchors><Anchor point="LEFT" relativeKey="$parent.BreadcrumbForumThread" relativePoint="RIGHT" x="20"/></Anchors>
+				</Frame>
+
+				<Frame parentKey="BreadcrumbsMenuIcon">
+				<Size x="20" y="20"/>
+				<Anchors><Anchor point="RIGHT" x="-20" /></Anchors>
+				<Layers>
+					<Layer>
+						<Texture atlas="Gamepad_Ltr_Menu_32"> 
+							<Size x="30" y="30"/> 
+						</Texture> 
+					</Layer>
+				</Layers>
+				</Frame>
+			</Frames>		
+		</Frame>
+
+		<Frame parentKey="Body"> 
+			<Size x="1120" y="750"/>  
+			<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.Breadcrumbs" relativePoint="BOTTOMLEFT" x="15" y="-30"/></Anchors> 
+			<Frames>
+
+				<Frame parentKey="AvatarMaskIcon">
+					<Size x="50" y="50"/> 
+					<Anchors><Anchor point="LEFT" relativePoint="TOPLEFT" x="20" /></Anchors>
+					<Layers>
+						<Layer>
+							<Texture atlas="Azerite-CenterBG-ChannelGlowBar-Effect">
+								<Size x="50" y="50"/> 
+							</Texture> 
+						</Layer>
+					</Layers>
+				</Frame>
+				<Frame parentKey="ContextUsername" inherits="ContextItemTemplate">
+					<Anchors><Anchor point="LEFT" relativeKey="$parent.AvatarMaskIcon" relativePoint="RIGHT" x="20"/></Anchors>
+				</Frame>
+
+				<Frame parentKey="Rating">
+					<Size x="50" y="50"/>
+					<Anchors><Anchor point="RIGHT" relativeKey="$parent.Body" relativePoint="TOPRIGHT" x="-30"/></Anchors>
+					<Layers>
+						<Layer>
+							<Texture atlas="GarrMission_ClassIcon-Horde"> 
+								<Size x="50" y="50"/>
+							</Texture>
+						</Layer>
+					</Layers>
+				</Frame>
+
+				<Frame parentKey="Reputation">
+					<Size x="50" y="50"/>
+					<Anchors><Anchor point="RIGHT" relativeKey="$parent.Rating" relativePoint="LEFT" x="-10"/></Anchors>
+					<Layers>
+						<Layer>
+							<Texture atlas="GarrMission_ClassIcon-Alliance"> 
+								<Size x="50" y="50"/>
+							</Texture>
+						</Layer>
+					</Layers>
+				</Frame>
+
+				<EditBox parentKey="InputBox" inherits="InputBoxTemplate" autoFocus="false"> 
+					<Size x="1000" y="40"/> 
+					<Anchors> <Anchor point="TOPRIGHT" relativePoint="BOTTOMLEFT" relativeKey="$parent.Rating" y="-10"/> </Anchors> 
+				</EditBox>
+
+				<Frame parentKey="InputBoxPlaceholder">
+					<Size x="20" y="20"/>
+					<Anchors><Anchor point="LEFT" relativeKey="$parent.InputBox" relativePoint="LEFT" x="20"/></Anchors>
+					<Layers>
+						<Layer>
+							<FontString parentKey='Text' text="PLACE" inherits="MyFont"/>
+						</Layer>
+					</Layers>
+				</Frame>
+
+				<!-- PROFILE NAVIGATION -->
+				<Frame parentKey="ProfileNavigation">
+				<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.InputBox" relativePoint="BOTTOMLEFT" y="-10" /></Anchors>
+				<Size x="1000" y="10"/>
+					<Frames>
+						<Frame parentKey="MyProfile" inherits="NavItemTemplate">
+						<Anchors><Anchor point="LEFT"  relativePoint="BOTTOMLEFT" x="15"/></Anchors>
+						</Frame>
+						
+						<Frame parentKey="MyThread" inherits="NavItemTemplate">
+						<Anchors><Anchor point="LEFT" relativeKey="$parent.MyProfile" relativePoint="RIGHT" x="50" /></Anchors>
+						</Frame>
+				
+						<Frame parentKey="MyFriends" inherits="NavItemTemplate">
+						<Anchors><Anchor point="LEFT" relativeKey="$parent.MyThread" relativePoint="RIGHT" x="50" /></Anchors>
+						</Frame>
+
+						<Frame parentKey="MyComments" inherits="NavItemTemplate">
+						<Anchors><Anchor point="LEFT" relativeKey="$parent.MyFriends" relativePoint="RIGHT" x="50" /></Anchors>
+						</Frame>
+
+						<Frame parentKey="MyReputation" inherits="NavItemTemplate">
+						<Anchors><Anchor point="LEFT" relativeKey="$parent.MyComments" relativePoint="RIGHT" x="50"/></Anchors>
+						</Frame>
+
+						<Frame parentKey="MyIntegrations" inherits="NavItemTemplate">
+						<Anchors><Anchor point="LEFT" relativeKey="$parent.MyReputation" relativePoint="RIGHT" x="50" /></Anchors>
+						</Frame>
+					</Frames>
+				</Frame>
+				<Frame parentkey="AfterNavStrip" inherits="StripLine">
+					<Size x="1110" y="10"/>
+					<Anchors><Anchor point="CENTER" relativeKey="$parent.ProfileNavigation" relativePoint="Bottom" x="5" y="-20"/></Anchors>
+				</Frame>
+				<!-- PROFILE INFORMATION -->
+				<Frame parentKey="ProfileInformation">
+					<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.AfterNavStrip" relativePoint="BOTTOMLEFT"/></Anchors>
+					<Size x="1140" y="250"/>
+					<Frames>
+						<Frame parentKey="ProfileImage">
+							<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.AfterNavStrip" relativePoint="TOPLEFT" x="30" y="-10"/></Anchors>
+							<Size x="255" y="250"/>
+							<Layers>	
+								<Layer>
+									<Texture atlas="Azerite-CenterBG-ChannelGlowBar-Effect"></Texture>
+								</Layer>
+							</Layers>
+						</Frame>
+						<Frame parentKey="ProfileInformation">
+						<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.ProfileImage" relativePoint="TOPRIGHT" x="30" y="-10"/></Anchors>
+						<Size x="255" y="250"/>
+							<Frames>
+								<Frame parentKey="MyProfileRegistration" inherits="ContextItemTemplate">
+								<Anchors><Anchor point="TOPLEFT" relativePoint="TOPLEFT"/></Anchors>
+								</Frame>
+									<Frame parentKey="MyProfileRegistrationText" inherits="NavItemTemplate">
+									<Anchors><Anchor point="LEFT" relativeKey="$parent.MyProfileRegistration" relativePoint="RIGHT" x="10" /></Anchors>
+									</Frame>
+									
+								<Frame parentKey="MyProfileGroups" inherits="ContextItemTemplate">
+								<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.MyProfileRegistration" relativePoint="BOTTOMLEFT" y="-10" /></Anchors>
+								</Frame>
+									<Frame parentKey="MyProfileGroupsText" inherits="NavItemTemplate">
+									<Anchors><Anchor point="LEFT" relativeKey="$parent.MyProfileGroups" relativePoint="RIGHT" x="10" /></Anchors>
+									</Frame>
+
+								<Frame parentKey="MyProfileCity" inherits="ContextItemTemplate">
+								<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.MyProfileGroups" relativePoint="BOTTOMLEFT" y="-10" /></Anchors>
+								</Frame>
+									<Frame parentKey="MyProfileCityText" inherits="NavItemTemplate">
+									<Anchors><Anchor point="LEFT" relativeKey="$parent.MyProfileCity" relativePoint="RIGHT" x="10" /></Anchors>
+									</Frame>
+
+								<Frame parentKey="MyProfileSex" inherits="ContextItemTemplate">
+								<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.MyProfileCity" relativePoint="BOTTOMLEFT" y="-10" /></Anchors>
+								</Frame>
+									<Frame parentKey="MyProfileSexText" inherits="NavItemTemplate">
+									<Anchors><Anchor point="LEFT" relativeKey="$parent.MyProfileSex" relativePoint="RIGHT" x="10" /></Anchors>
+									</Frame>
+
+								<Frame parentKey="MyProfileSkype" inherits="ContextItemTemplate">
+								<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.MyProfileSex" relativePoint="BOTTOMLEFT" y="-10" /></Anchors>
+								</Frame>
+									<Frame parentKey="MyProfileSkypeText" inherits="NavItemTemplate">
+									<Anchors><Anchor point="LEFT" relativeKey="$parent.MyProfileSkype" relativePoint="RIGHT" x="10" /></Anchors>
+									</Frame>
+
+								<Frame parentKey="MyProfileScrollBox" inherits="WowScrollBoxList">
+								<Size x="200" y="200"/>
+								<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.MyProfileSkype" relativePoint="BOTTOMLEFT" y="-10" /></Anchors>
+								</Frame>
+								<EventFrame parentKey="MyProfileScrollBar" inherits="MinimalScrollBar">
+								<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.MyProfileScrollBox" relativePoint="TOPRIGHT" /></Anchors>
+								</EventFrame>
+
+							</Frames>
+						</Frame>
+					</Frames>
+				</Frame>
+				<Frame parentKey="FriendsFrame">
+				<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.ProfileInformation" relativePoint="BOTTOMLEFT" x="30" y="-10"/></Anchors>
+				<Size x="255" y="70"/>
+							<Layers>
+								<Layer>
+									<Texture parentKey="Border" atlas="AdventureMap_TopBorder">
+										<Anchors><Anchor point="TOPLEFT" relativePoint="TOPLEFT" /></Anchors>
+										<Size x="255" y="70"/>
+									</Texture>
+								</Layer>
+							</Layers>
+							<Frames>
+								<Frame parentKey="FriendsTag" inherits="NavItemTemplate">
+								<Anchors><Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="20" y="-5" /></Anchors>
+								</Frame>
+								
+								<Frame parentKey="FriendsItemContainer">
+									<Size x="255" y="50"/>
+									<Anchors>
+									<Anchor point="TOPLEFT" relativeKey="$parent.FriendsTag" relativePoint="BOTTOMLEFT" x="-10" y="-5"/>
+									</Anchors>
+									<!-- <Frames>
+										<Frame inherits="FriendsItemTemplate">
+										</Frame>
+									</Frames> -->
+								</Frame>
+							</Frames>
+				</Frame>
+
+				<Frame parentKey="CharactersFrame">
+				<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.FriendsFrame" relativePoint="BOTTOMLEFT"/></Anchors>
+				<Size x="255" y="40"/>
+				<Frames>
+					<Frame parentKey="CharactersTag" inherits="NavItemTemplate">
+					<Anchors><Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="20" y="-5" /></Anchors>
+					</Frame>
+				</Frames>
+				<Layers>
+					<Layer>
+						<Texture atlas="AdventureMap_TopBorder">
+							<Size x="255" y="40"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				</Frame>
+
+				<Frame parentKey="EventsFrame">
+				<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.CharactersFrame" relativePoint="BOTTOMLEFT"/></Anchors>
+				<Size x="255" y="40"/>
+				<Frames>
+					<Frame parentKey="EventsTag" inherits="NavItemTemplate">
+					<Anchors><Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="20" y="-5" /></Anchors>
+					</Frame>
+
+					<Frame parentkey="AfterNavStrip" inherits="StripLine">
+					<Size x="1110" y="10"/>
+					<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.EventsFrame" relativePoint="BOTTOMLEFT" x="-30" y="-20"/></Anchors>
+				</Frame>
+				</Frames>
+				<Layers>
+					<Layer>
+						<Texture atlas="AdventureMap_TopBorder">
+							<Size x="255" y="40"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				</Frame>
+				
+				<Frame parentKey="PageWriteTag" inherits="ContextItemTemplate">
+				<Anchors><Anchor point="TOPLEFT" relativeKey="$parent.EventsFrame.AfterNavStrip" relativePoint="BOTTOMLEFT" x="20" /></Anchors>
+				<Size x="200" y="40"/>
+				</Frame>
+
+				<Button parentKey="PageWriteButton" name="PageWrite">
+					<Anchors><Anchor point="TOPRIGHT" relativeKey="$parent.EventsFrame.AfterNavStrip" relativePoint="BOTTOMRIGHT" /></Anchors>
+					<Size x="175" y="40"/>
+					<Layers>
+						<Layer level="BACKGROUND">
+							<Texture atlas="common-button-tertiary-disabled-small"></Texture>
+						</Layer>
+						<Layer level="ARTWORK">
+							<FontString text="Написать на стене" inherits="MyFont"> 
+							</FontString> 
+						</Layer>
+					</Layers>
+					<Scripts>
+						<OnMouseDown>
+							Testcase1:GetItemCount(MainFrame.Body.InputBox)
+						</OnMouseDown>
+					</Scripts>
+				</Button>
+			</Frames>	
+		</Frame>
+		</Frames>
+	</Frame>
+</Ui>
